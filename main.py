@@ -1,22 +1,8 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import List, Optional
+from models import Product, User
 
 app = FastAPI()
 
-# Модель товара
-class Product(BaseModel):
-    id: int
-    name: str
-    description: Optional[str] = None
-    price: float
-    quantity: int
-
-# Модель пользователя
-class User(BaseModel):
-    id: int
-    username: str
-    email: str
 
 # Хранилище товаров и пользователей
 products = []
@@ -29,7 +15,7 @@ def create_product(product: Product):
     products.append(product)
     return product
 
-@app.get("/products/", response_model=List[Product])
+@app.get("/products/", response_model=list[Product])
 def get_products():
     return products
 
@@ -63,7 +49,7 @@ def create_user(user: User):
     users.append(user)
     return user
 
-@app.get("/users/", response_model=List[User])
+@app.get("/users/", response_model=list[User])
 def get_users():
     return users
 
