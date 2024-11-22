@@ -1,5 +1,5 @@
 [app_settings]
-app_port=8000
+app_port='8000'
 app_version='1.0.0'
 app_name='pay_service'
 app_host='127.0.0.1'
