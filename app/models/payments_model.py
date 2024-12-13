@@ -12,6 +12,7 @@ class Payments(BaseModel, Base):
     amount = Column(Numeric(10, 2), nullable=False)
     email = Column(String)
     type = Column(String(30), nullable=False)
+    abc_test = Column(String(30), nullable=False)
     payments_status = Column(String, nullable=False)
     company_id = Column(Integer, ForeignKey('companies.company_id'), nullable=False)
 
