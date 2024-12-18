@@ -1,20 +1,14 @@
-# В этом файле будут располагаться подключения к базе, работа с сессией ...
 from sqlalchemy import NullPool
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase
 
 from app.config import settings
 
-engine - create_async_engine(
-    url=settings.db.db_url,
-    echo=True,
-    pollclass=NullPool,
-)
+
+engine = create_async_engine(url=settings.db.db_url, echo=True, poolclass=NullPool)
 
 async_session_maker = async_sessionmaker(
-    bind=engine,
-    class_=AsyncSession,
-    expire_on_commit=True,  # Для явного указания коммитов в бд
+    bind=engine, class_=AsyncSession, expire_on_commit=True
 )
 
 

@@ -1,10 +1,13 @@
-from fastapi import APIRouter, Request, Response
-from app.schemas.misc_schemas import HealthcheckSchema
-from app.config import settings
-
-router = APIRouter()
+from fastapi import FastAPI
+from app.api.routes import ROUTES
 
 
-@router.get("/helthcheck", response_model=HealthcheckSchema)
-def healthcheck(request: Request):
-    return HealthcheckSchema(status="OK", version=settings.app.app_version)
+def setup_routers(app: FastAPI) -> None:
+    for prefix, router in ROUTES.items():
+        app.include_router(router, prefix=prefix)
+
+
+def get_app() -> FastAPI:
+    app = FastAPI(title="Pay Service")
+    setup_routers(app)
+    return app

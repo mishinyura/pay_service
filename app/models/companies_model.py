@@ -1,9 +1,10 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String
 from app.db import Base
 from app.models.base_model import BaseModel
 
-class Company(Base, BaseModel):
-    __tablename__ = 'companies'
+
+class Company(Base):
+    __tablename__ = "companies"
 
     name = Column(String)
-    company_id = Column(Integer, primaty_key=True, autoincrement=True)
+    company_id = Column(Integer, primary_key=True, autoincrement=True)

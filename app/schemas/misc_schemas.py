@@ -4,5 +4,5 @@ from pydantic import BaseModel
 
 
 class HealthcheckSchema(BaseModel):
-    status: str
+    status: Literal["OK"]
     version: str
